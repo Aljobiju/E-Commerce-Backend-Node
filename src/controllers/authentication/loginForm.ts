@@ -45,7 +45,7 @@ const loginForm = async (req: Request, res: Response): Promise<void> => {
     } catch (error) {
       console.error("Error during customer login:", error);
       res.status(500).json({
-        message: "Internal Server Error",
+        message: " Server Error",
       });
     }
   } else {
@@ -76,7 +76,7 @@ const loginForm = async (req: Request, res: Response): Promise<void> => {
     } catch (error) {
       console.error("Error during supplier login:", error);
       res.status(500).json({
-        message: "Internal Server Error",
+        message: " Server Error",
       });
     }
   }

@@ -38,7 +38,7 @@ try {
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({
-      error: "Internal Server Error",
+      error: "Server Error",
     });
   }
 }

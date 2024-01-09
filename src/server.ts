@@ -1,33 +1,3 @@
-// const express = require("express");
-// const app = express();
-// const port = 3000;
-
-// app.get("/", (req, res) => {
-//   res.send("welcome");
-// });
-
-// app.listen(port, () => {
-//   console.log("Server is running on port", port);
-// });
-
-//----------------------------------------------------------------
-
-
-// const express = require("express");
-// const app = express();
-// const port = 3000;
-
-// app.get("/", (req, res) => {
-//   const { name, age } = req.query;
-//   res.send(`${name},${age}`);
-// });
-
-// app.listen(port, () => {
-//   console.log("Server is running on port", port);
-// });
-
-
-//----------------------------------------------------------------
 
 //inserting data via postman
 import express, { Request, Response, NextFunction } from "express";
@@ -39,11 +9,12 @@ import login from "./routes/login";
 import { firstExample } from "./middleware/middlewareExample";
 import { secondExample } from "./middleware/middlewareExample";
 import updatepasswordRouter from "./routes/resetPassword";
+import sequelizeSync from "./services/sequelize";
+import {connectToMongoDb, stopMongoDb } from "./services/mongodb";
 
-// Sync the model with the database to create the table
-sequelize.sync().then(() => {
-  console.log("Table synced successfully");
 
+  sequelizeSync();
+  connectToMongoDb();
   const app = express();
   const port = process.env.PORT || 3000;
 
@@ -91,5 +62,17 @@ app.get("/example",firstExample,secondExample, (req: CustomRequest, res: Respons
   app.listen(port, () => {
     console.log(`Server is running on port : ${port}`);
   });
-});
+
+  //====================================
+
+  //mongodb
+
+  process.on("SIGINT",()=>{
+    sequelize.close();stopMongoDb();
+  })
+
+  process.on("exit",()=>{
+    sequelize.close();stopMongoDb();
+  })
+
 

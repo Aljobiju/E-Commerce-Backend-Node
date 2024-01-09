@@ -29,7 +29,7 @@ const resetPassword = async (req: Request, res: Response): Promise<void> => {
 
     if (client_type === "customer") {
       await EcCustomers.update(
-        { password: new_password },
+        { password: hashPassword(new_password) },
         {
           where: { e_mail },
         }
@@ -39,7 +39,7 @@ const resetPassword = async (req: Request, res: Response): Promise<void> => {
       res.status(200).json({ message: "Password updated successfully" });
     } else if (client_type === "supplier") { // Corrected the condition here
       await EcSuppliers.update(
-        { password: new_password },
+        { password: hashPassword(new_password) },
         {
           where: { e_mail },
         }
@@ -51,7 +51,7 @@ const resetPassword = async (req: Request, res: Response): Promise<void> => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: "Server Error" });
   }
 };
 
