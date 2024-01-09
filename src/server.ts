@@ -1,35 +1,4 @@
-// const express = require("express");
-// const app = express();
-// const port = 3000;
 
-// app.get("/", (req, res) => {
-//   res.send("welcome");
-// });
-
-// app.listen(port, () => {
-//   console.log("Server is running on port", port);
-// });
-
-//----------------------------------------------------------------
-
-
-// const express = require("express");
-// const app = express();
-// const port = 3000;
-
-// app.get("/", (req, res) => {
-//   const { name, age } = req.query;
-//   res.send(`${name},${age}`);
-// });
-
-// app.listen(port, () => {
-//   console.log("Server is running on port", port);
-// });
-
-
-//----------------------------------------------------------------
-
-//inserting data via postman
 import express, { Request, Response, NextFunction } from "express";
 import sequelize from "./config/sequelize-config";
 import EcSuppliers from "./models/ec_suppliers";
