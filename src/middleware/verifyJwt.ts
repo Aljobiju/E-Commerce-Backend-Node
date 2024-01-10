@@ -6,7 +6,7 @@ export const verifyToken = (req: Request,res: Response,next: NextFunction) => {
   let token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ message: " No token provided" });
+    return res.status(404).json({ message: " No token provided" });
   }
   try {
     let processed_token = token.split("Bearer ")[1];

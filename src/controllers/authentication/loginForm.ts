@@ -33,7 +33,7 @@ const loginForm = async (req: Request, res: Response): Promise<void> => {
             token: token,
           });
         } else {
-          res.status(401).json({
+          res.status(404).json({
             message: "Password does not match",
           });
         }
@@ -64,7 +64,7 @@ const loginForm = async (req: Request, res: Response): Promise<void> => {
             message: "User found",
           });
         } else {
-          res.status(401).json({
+          res.status(404).json({
             message: "Password does not match",
           });
         }

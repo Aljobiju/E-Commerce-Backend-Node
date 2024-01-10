@@ -11,13 +11,16 @@ import { secondExample } from "./middleware/middlewareExample";
 import updatepasswordRouter from "./routes/resetPassword";
 import sequelizeSync from "./services/sequelize";
 import {connectToMongoDb, stopMongoDb } from "./services/mongodb";
+import addingproduct from "./routes/addproduct";
+import cors from "cors";
 
 
   sequelizeSync();
   connectToMongoDb();
+  
   const app = express();
   const port = process.env.PORT || 3000;
-
+  app.use(cors());
   // Middleware to parse JSON requests
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -33,6 +36,7 @@ import {connectToMongoDb, stopMongoDb } from "./services/mongodb";
   app.use("/api/v1", router); 
   app.use("/api/v2",customerRouter)
   app.use("/api/v3",login)
+  app.use("/api/addproduct",addingproduct)
   app.use("/api/updatepassword",updatepasswordRouter)
 //==============================================================================
   interface CustomRequest extends Request {
@@ -69,6 +73,7 @@ app.get("/example",firstExample,secondExample, (req: CustomRequest, res: Respons
 
   process.on("SIGINT",()=>{
     sequelize.close();stopMongoDb();
+    process.exit();
   })
 
   process.on("exit",()=>{
