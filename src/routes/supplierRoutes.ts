@@ -5,6 +5,7 @@ import supplierRegistration from "../controllers/supplierControllers/supplierReg
 import { getSupplier } from "../controllers/supplierControllers/supplierRegistration";
 import supplierProfile from "../controllers/supplierControllers/supplierProfile";
 import { verifyToken } from "../middleware/verifyJwt";
+import { getProductSupplier } from "../controllers/products/getproductbysupplier";
 
  //importing from controllers
 const router = express.Router();
@@ -13,12 +14,16 @@ router.get("/", async (req: Request, res: Response) => {
   });
 
   //importing from controllers
-  router.post("/", async (req: Request, res: Response) => {
+  router.post("/reg", async (req: Request, res: Response) => {
     supplierRegistration(req,res);
   });
 
-  router.post("/get",verifyToken , (req: Request, res: Response) => {
+  router.post("/getprofile",verifyToken , (req: Request, res: Response) => {
     supplierProfile(req,res);
+   });
+
+   router.post("/getsupplierproducts",verifyToken , (req: Request, res: Response) => {
+    getProductSupplier(req,res);
    });
 
   export default router;

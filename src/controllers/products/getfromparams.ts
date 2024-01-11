@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 const db: Db = client.db("ECommerce");
 
-export const getProduct = async (req: Request, res: Response): Promise<any> => {
+export const getProductParams = async (req: Request, res: Response): Promise<any> => {
     try {
         const productId = req.params.productId;
 

@@ -36,7 +36,7 @@ import cors from "cors";
   app.use("/api/v1", router); 
   app.use("/api/v2",customerRouter)
   app.use("/api/v3",login)
-  app.use("/api/addproduct",addingproduct)
+  app.use("/api/product",addingproduct)
   app.use("/api/updatepassword",updatepasswordRouter)
 //==============================================================================
   interface CustomRequest extends Request {
@@ -81,3 +81,4 @@ app.get("/example",firstExample,secondExample, (req: CustomRequest, res: Respons
   })
 
 
+  

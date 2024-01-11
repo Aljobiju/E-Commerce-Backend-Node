@@ -60,8 +60,17 @@ const loginForm = async (req: Request, res: Response): Promise<void> => {
 
         // Compare entered password with stored hashed password
         if (hashPassword(password) === storedHashPassword) {
+          const token = jwt.sign(
+            {
+              userId: foundUser.id,
+              client_type,
+            },
+            'your-secret-key',
+            { expiresIn: '24h' }
+          );
           res.status(200).json({
             message: "User found",
+            token:token,
           });
         } else {
           res.status(404).json({

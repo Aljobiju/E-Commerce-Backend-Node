@@ -13,10 +13,10 @@ export const addProduct = async (req: Request, res: Response): Promise<any> => {
         }
 
         const productsCollection = db.collection('products');
-        const supplier_id = req.body.jwt_decoded;
+        const {userId} = req.body.jwt_decoded;
 
         const productData = {
-            supplier_id,
+            supplier_id:userId,
             product_name,
             product_category,
             product_stock,

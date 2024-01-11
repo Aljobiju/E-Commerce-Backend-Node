@@ -6,7 +6,7 @@ const db: Db = client.db("ECommerce");
 
 export const updateProduct = async (req: Request, res: Response): Promise<any> => {
     try {
-        const {productId} = req.body;
+        const {productId} = req.query;
 
         // if (!productId) {
         //     return res.status(400).json({ status: "Bad request", message: "Product ID is required for updating" });
@@ -18,7 +18,7 @@ export const updateProduct = async (req: Request, res: Response): Promise<any> =
 
         // Find the product by ID and update it
         const result = await productsCollection.updateOne(
-            { _id: new ObjectId(productId) }, // Assuming the product has an ObjectId as _id
+            { _id: new ObjectId(productId as string) }, // Assuming the product has an ObjectId as _id
             { $set: updatedData }
         );
 
