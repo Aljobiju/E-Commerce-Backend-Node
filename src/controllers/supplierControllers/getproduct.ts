@@ -9,7 +9,6 @@ export const getProduct = async (req: Request, res: Response): Promise<any> => {
         const {productId} = req.query;
 
         const productsCollection = db.collection('products');
-
        //find and print
         const foundProduct = await productsCollection.findOne({ _id: new ObjectId(productId as string) });
         res.status(200).json({ foundProduct});

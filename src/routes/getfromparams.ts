@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from "express";
-import { addProduct } from "../controllers/products/addproduct";
+import { addProduct } from "../controllers/supplierControllers/addproduct";
 import { verifyToken } from "../middleware/verifyJwt";
 
  //importing from controllers

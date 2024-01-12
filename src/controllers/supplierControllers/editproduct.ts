@@ -1,6 +1,7 @@
 import { client } from "../../services/mongodb";
 import { ObjectId, Db } from 'mongodb';
 import { Request, Response } from "express";
+import { io } from "../../server";
 
 const db: Db = client.db("ECommerce");
 

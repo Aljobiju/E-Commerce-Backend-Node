@@ -5,7 +5,7 @@ import supplierRegistration from "../controllers/supplierControllers/supplierReg
 import { getSupplier } from "../controllers/supplierControllers/supplierRegistration";
 import supplierProfile from "../controllers/supplierControllers/supplierProfile";
 import { verifyToken } from "../middleware/verifyJwt";
-import { getProductSupplier } from "../controllers/products/getproductbysupplier";
+import { getProductSupplier } from "../controllers/supplierControllers/getproductbysupplier";
 
  //importing from controllers
 const router = express.Router();

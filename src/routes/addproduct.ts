@@ -1,8 +1,8 @@
 import express, { Request, Response, Router } from "express";
-import { addProduct } from "../controllers/products/addproduct";
+import { addProduct } from "../controllers/supplierControllers/addproduct";
 import { verifyToken } from "../middleware/verifyJwt";
-import { updateProduct } from "../controllers/products/editproduct";
-import { getProduct } from "../controllers/products/getproduct";
+import { updateProduct } from "../controllers/supplierControllers/editproduct";
+import { getProduct } from "../controllers/supplierControllers/getproduct";
 
 
  //importing from controllers
