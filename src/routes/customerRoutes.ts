@@ -6,6 +6,8 @@ import { customerGet } from "../controllers/customerControllers/customerRegistra
 import customerProfile from "../controllers/customerControllers/customerProfile";
 import { verifyToken } from "../middleware/verifyJwt";
 import addCart from "../controllers/customerControllers/addcart";
+import updateCart from "../controllers/customerControllers/updatecart";
+import getCart from "../controllers/customerControllers/getcart";
 
   //importing from controllers
 const customerRouter = express.Router();
@@ -28,6 +30,17 @@ customerRouter.get("/", async (req: Request, res: Response) => {
    customerRouter.post("/addcart",verifyToken, async (req: Request, res: Response) => {
     addCart(req,res);
    });
+
+   customerRouter.post("/updatecart",verifyToken, async (req: Request, res: Response) => {
+    updateCart(req,res);
+   });
+
+   customerRouter.get("/getcart",verifyToken, async (req: Request, res: Response) => {
+    getCart(req,res);
+   });
+
+   
+
 
 
 

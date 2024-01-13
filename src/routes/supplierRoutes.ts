@@ -6,24 +6,55 @@ import { getSupplier } from "../controllers/supplierControllers/supplierRegistra
 import supplierProfile from "../controllers/supplierControllers/supplierProfile";
 import { verifyToken } from "../middleware/verifyJwt";
 import { getProductSupplier } from "../controllers/supplierControllers/getproductbysupplier";
+import multer from "multer";
+import { addProduct } from "../controllers/supplierControllers/addproduct";
+import { updateProduct } from "../controllers/supplierControllers/editproduct";
+import { getProduct } from "../controllers/supplierControllers/getproduct";
+
+
+
 
  //importing from controllers
-const router = express.Router();
-router.get("/", async (req: Request, res: Response) => {
+const supplierRouter = express.Router();
+
+const storage=multer.memoryStorage();
+const upload=multer({storage:storage});
+
+
+
+
+supplierRouter.get("/", async (req: Request, res: Response) => {
   getSupplier(req,res); 
   });
 
   //importing from controllers
-  router.post("/reg", async (req: Request, res: Response) => {
+  supplierRouter.post("/reg", upload.single("profile_pic"), async (req: Request, res: Response) => {
     supplierRegistration(req,res);
   });
 
-  router.post("/getprofile",verifyToken , (req: Request, res: Response) => {
+  supplierRouter.post("/getprofile",verifyToken , (req: Request, res: Response) => {
     supplierProfile(req,res);
    });
 
-   router.post("/getsupplierproducts",verifyToken , (req: Request, res: Response) => {
+   supplierRouter.post("/getsupplierproducts",verifyToken , (req: Request, res: Response) => {
     getProductSupplier(req,res);
    });
 
-  export default router;
+//products
+
+supplierRouter.post("/addproduct",verifyToken, async (req: Request, res: Response) => {
+    addProduct(req,res);
+  }
+  );
+
+  supplierRouter.patch("/editproduct",verifyToken,async(req:Request,res:Response)=>{
+    updateProduct(req,res);
+  })
+
+  supplierRouter.get("/getproduct",verifyToken,async(req:Request,res:Response)=>{
+    getProduct(req,res);
+  })
+
+   
+
+  export default supplierRouter;

@@ -3,7 +3,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import sequelize from "./config/sequelize-config";
 import EcSuppliers from "./models/ec_suppliers";
-import router from "./routes/supplierRoutes";
+import supplierRouter from "./routes/supplierRoutes";
 import customerRouter from "./routes/customerRoutes";
 import login from "./routes/login";
 import { firstExample } from "./middleware/middlewareExample";
@@ -11,7 +11,6 @@ import { secondExample } from "./middleware/middlewareExample";
 import updatepasswordRouter from "./routes/resetPassword";
 import sequelizeSync from "./services/sequelize";
 import {connectToMongoDb, stopMongoDb } from "./services/mongodb";
-import addingproduct from "./routes/addproduct";
 import cors from "cors";
 import { Server,Socket } from "socket.io"
 import { createServer } from "http";
@@ -48,10 +47,9 @@ import { initializeSocket } from "./services/socket";
     next();
   })
 
-  app.use("/api/v1", router); 
+  app.use("/api/v1", supplierRouter); 
   app.use("/api/v2",customerRouter)
   app.use("/api/v3",login)
-  app.use("/api/product",addingproduct)
   app.use("/api/updatepassword",updatepasswordRouter)
 
 

@@ -4,7 +4,7 @@ import EcCart from '../../models/ec_cart';
 const updateCart = async (req: Request, res: Response): Promise<void> => {
     try {
         const { product_id, quantity } = req.body;
-        const { registrationId, client_type } = req.body.jwt_decoded;
+        const { userId, client_type } = req.body.jwt_decoded;
         if (!product_id || !quantity || client_type != 'customer') {
             res.status(404).json({ error: 'Bad request' });
         }

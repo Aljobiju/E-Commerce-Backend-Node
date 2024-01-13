@@ -3,11 +3,11 @@ import EcCart from '../../models/ec_cart';
  
 const getCart = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { registrationId, client_type } = req.body.jwt_decoded;
-        if (!registrationId || client_type != 'customer') {
+        const { userId, client_type } = req.body.jwt_decoded;
+        if (!userId || client_type != 'customer') {
             res.send(404).json({ error: 'Bad request' });
         }
-        const cartData = await EcCart.findAll({ where: { registration_id: registrationId }, raw: true });
+        const cartData = await EcCart.findAll({ where: { registration_id: userId }, raw: true });
         res.status(500).json({ ...cartData });
     }
     catch (error: any) {
