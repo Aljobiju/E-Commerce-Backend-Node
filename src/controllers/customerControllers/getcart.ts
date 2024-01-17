@@ -9,6 +9,7 @@ const getCart = async (req: Request, res: Response): Promise<void> => {
         }
         const cartData = await EcCart.findAll({ where: { registration_id: userId }, raw: true });
         res.status(500).json({ ...cartData });
+
     }
     catch (error: any) {
         res.status(500).json({ error: error.toString() });

@@ -7,6 +7,7 @@ class EcCart extends Model {
     public quantity!: number;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
+    
 };
  
 export default EcCart;

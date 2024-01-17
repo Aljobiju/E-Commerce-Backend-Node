@@ -8,6 +8,7 @@ import { verifyToken } from "../middleware/verifyJwt";
 import addCart from "../controllers/customerControllers/addcart";
 import updateCart from "../controllers/customerControllers/updatecart";
 import getCart from "../controllers/customerControllers/getcart";
+import checkout from "../controllers/customerControllers/checkoutcart";
 
   //importing from controllers
 const customerRouter = express.Router();
@@ -37,6 +38,10 @@ customerRouter.get("/", async (req: Request, res: Response) => {
 
    customerRouter.get("/getcart",verifyToken, async (req: Request, res: Response) => {
     getCart(req,res);
+   });
+
+   customerRouter.get("/checkout",verifyToken, async (req: Request, res: Response) => {
+    checkout(req,res);
    });
 
    
